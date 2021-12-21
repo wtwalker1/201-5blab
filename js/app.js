@@ -53,11 +53,11 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-  let sum = a + b + c;
-  let product = a * b * c;
-  let string1 = a + ' and ' + b + ' and ' + c + ' sum to ' + sum + '.';
-  let string2 = 'The product of ' + a + ' and ' + b + ' and ' + c + ' is ' + product + '.';
-  return [sum, product, string1, string2];
+  let sumTotal = sum(a, sum(b, c)[0])[0];
+  let productTotal = multiply(a, multiply(b, c)[0])[0];
+  let string1 = a + ' and ' + b + ' and ' + c + ' sum to ' + sumTotal + '.';
+  let string2 = 'The product of ' + a + ' and ' + b + ' and ' + c + ' is ' + productTotal + '.';
+  return [sumTotal, productTotal, string1, string2];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -136,12 +136,27 @@ Test this function by hand in the console to get it working, and when you think 
 let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
-let product = dynamicArray[0], dynamicArray[1], dynamicArray[2], dynamicArray[3], dynamicArray[4]
-let string = 'The numbers ' + dynamicArray[0] + ',' + dynamicArray[1] + ',' + dynamicArray[2] + ',' + dynamicArray[3] + ',' + dynamic[4] + ' have a product of ' + product + '.';
-return [product, string] 
-}
+  // console.log('what is this?', dynamicArray);
+  let firstElement = 1;
 
-// Here is the test for multiplyArray(); uncomment it to run it
+  for(let i = 0; i < dynamicArray.length; i++){
+    firstElement = multiply(firstElement , dynamicArray[i])[0];
+  }
+
+  let stringMessage = 'The numbers ';
+
+  for(let i = 0; i < dynamicArray.length; i++){
+    stringMessage = stringMessage + dynamicArray[i];
+    if(i < dynamicArray.length - 1){
+      stringMessage = stringMessage + ',';
+    }
+  }
+  console.log(firstElement);
+  stringMessage += ' have a product of ' + firstElement + '.';
+  // console.log(stringMessage);
+  return [firstElement, stringMessage];
+}
+// // Here is the test for multiplyArray(); uncomment it to run it
 testMultiplyAnyArray(testDynamicArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
